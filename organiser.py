@@ -76,6 +76,10 @@ folders = [
 			'.pdf'],
 			['Executable files',
 			'.exe'],
+			['Icon files',
+			'.ico'],
+			['Cursor files',
+			'.ani .cur'],
 		]
 
 path = get_download_folder()
