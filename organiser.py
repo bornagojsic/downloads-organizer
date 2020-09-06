@@ -127,7 +127,7 @@ os.chdir(path)
 directory = os.listdir(path)
 
 for file in directory:
-	## Chacks for duplicates
+	## Checks for duplicates
 	if re.findall(r'\(.+\)\..*', file):
 		os.remove(file)
 	for folder in folders:
