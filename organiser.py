@@ -75,7 +75,7 @@ folders = [
 			['PDF files', 
 			'.pdf'],
 			['Executable files',
-			'.exe .msi'],
+			'.exe .EXE .msi'],
 			['Icon files',
 			'.ico'],
 			['Cursor files',
@@ -96,6 +96,10 @@ folders = [
 			'.json'],
 			['PHP files',
 			'.php'],
+			['Audio files',
+			'.3gp .aa .aac .aax .act .aiff .alac .amr .ape .au .awb .dct .dss .dvf .flac .gsm .iklax .ivs .m4a .m4b .m4p .mp3 .mpc .msv .nmf .ogg .oga .mogg .opus .ra .rm .raw .rf64 .sln .tta .voc .vox .wav .wma .wv .8svx .cda'],
+			['Video files',
+			''],
 		]
 
 path = get_download_folder()
@@ -115,3 +119,4 @@ for file in directory:
 		if any(file.endswith(ext) for ext in exts.split()):
 			make(name)
 			os.replace(f"{path}\\{file}", f"{path}\\{name}\\{file}")
+
