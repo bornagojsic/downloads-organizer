@@ -118,27 +118,34 @@ def language():
 			folder[0] = folder[0].replace('files', 'datoteke').replace('Audio', 'Zvučne').replace('Image', 'Slikovne').replace('Executable', 'Izvršne')
 
 
-language()
+def replace(path, name, file):
+	make(name)
+	os.replace(f"{path}\\{file}", f"{path}\\{name}\\{file}")
 
-path = get_download_folder()
 
-os.chdir(path)
+def main():
+	language()
 
-directory = os.listdir(path)
+	path = get_download_folder()
 
-for file in directory:
-	## Checks for duplicates
-	if re.findall(r'\(.+\)\..*', file):
-		os.remove(file)
-	for folder in folders:
-		[name, exts] = folder
-		if any(file.endswith(ext) for ext in exts.split()):
-			make(name)
-			os.replace(f"{path}\\{file}", f"{path}\\{name}\\{file}")
-			break
-	else:
-		if os.path.isfile(file):
-			name = 'Other files'
-			make(name)
-			os.replace(f"{path}\\{file}", f"{path}\\{name}\\{file}")
+	os.chdir(path)
 
+	directory = os.listdir(path)
+
+	for file in directory:
+		## Checks for duplicates
+		if re.findall(r'\(.+\)\..*', file):
+			os.remove(file)
+		for folder in folders:
+			[name, exts] = folder
+			if any(file.endswith(ext) for ext in exts.split()):
+				replace(path, name, file)
+				break
+		else:
+			if os.path.isfile(file):
+				name = 'Other files'
+				replace(path, name, file)
+
+
+if __name__ == '__main__':
+	main()
