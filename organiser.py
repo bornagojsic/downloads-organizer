@@ -81,7 +81,7 @@ folders = [
 			['Cursor files',
 			'.ani .cur'],
 			['Image files',
-			'.png .gif .jpg .jpeg .jpe .jfif .tif .tiff .bmp .dib .heic'],
+			'.png .gif .jpg .jpeg .jpe .jfif .tif .tiff .bmp .dib .heic .svg .eps'],
 			['Python files',
 			'.py'],
 			['C/C++ files',
