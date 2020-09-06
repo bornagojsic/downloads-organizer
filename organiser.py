@@ -75,7 +75,7 @@ folders = [
 			['PDF files', 
 			'.pdf'],
 			['Executable files',
-			'.exe'],
+			'.exe .msi'],
 			['Icon files',
 			'.ico'],
 			['Cursor files',
@@ -94,6 +94,8 @@ folders = [
 			'.js'],
 			['JSON files',
 			'.json'],
+			['PHP files',
+			'.php'],
 		]
 
 path = get_download_folder()
