@@ -74,6 +74,8 @@ folders = [
 			'.ppt .pptx .pptm .pot .potx .potm .pps .ppsx .ppsm .ppa .ppax .odp'],
 			['PDF files', 
 			'.pdf'],
+			['Executable files',
+			'.exe'],
 		]
 
 path = get_download_folder()
