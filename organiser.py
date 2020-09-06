@@ -86,6 +86,14 @@ folders = [
 			'.py'],
 			['C/C++ files',
 			'.c .h .cpp .hpp .cxx .hxx .cc .hh'],
+			['HTML files',
+			'.htm .html'],
+			['CSS files',
+			'.css'],
+			['JavaScript files',
+			'.js'],
+			['JSON files',
+			'.json'],
 		]
 
 path = get_download_folder()
