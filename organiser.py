@@ -54,13 +54,6 @@ else:
 ## --------------------------------------------------------------------------------------
 
 
-def make(name):
-	try:
-		os.mkdir(name)
-	except FileExistsError:
-		pass
-
-
 folders = [
 			['Zip files', 
 			'.zip .rar .7z'],
@@ -99,16 +92,39 @@ folders = [
 			['Audio files',
 			'.3gp .aa .aac .aax .act .aiff .alac .amr .ape .au .awb .dct .dss .dvf .flac .gsm .iklax .ivs .m4a .m4b .m4p .mp3 .mpc .msv .nmf .ogg .oga .mogg .opus .ra .rm .raw .rf64 .sln .tta .voc .vox .wav .wma .wv .8svx .cda'],
 			['Video files',
-			''],
+			'.webm .mpg .mp2 .mpeg .mpe .mpv .ogg .mp4 .m4p .m4v .avi .wmv .mov .qt .flv .swf'],
 		]
+
+langs = [
+			'en',
+			'hr',
+		]
+
+
+def make(name):
+	try:
+		os.mkdir(name)
+	except FileExistsError:
+		pass
+
+
+def language():
+	language = os.getenv('LANG')[:2] if os.getenv('LANG')[:2] in langs else 'en'
+
+	language = language 
+
+	if language == 'hr':
+		for folder in folders:
+			folder[0] = folder[0].replace('files', 'datoteke').replace('Audio', 'Zvučne').replace('Image', 'Slikovne').replace('Executable', 'Izvršne')
+
+
+language()
 
 path = get_download_folder()
 
 os.chdir(path)
 
 directory = os.listdir(path)
-
-# file_names = [re.findall(r'.+\.', file)[0][::-1][1:][::-1] for file in directory]
 
 for file in directory:
 	## Chacks for duplicates
@@ -117,6 +133,12 @@ for file in directory:
 	for folder in folders:
 		[name, exts] = folder
 		if any(file.endswith(ext) for ext in exts.split()):
+			make(name)
+			os.replace(f"{path}\\{file}", f"{path}\\{name}\\{file}")
+			break
+	else:
+		if os.path.isfile(file):
+			name = 'Other files'
 			make(name)
 			os.replace(f"{path}\\{file}", f"{path}\\{name}\\{file}")
 
