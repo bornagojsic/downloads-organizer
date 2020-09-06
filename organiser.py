@@ -54,17 +54,42 @@ else:
 ## --------------------------------------------------------------------------------------
 
 
+def make(name):
+	try:
+		os.mkdir(name)
+	except FileExistsError:
+		pass
+
+
+folders = [
+			['Zip files', 
+			'.zip .rar .7z'],
+			['Font files', 
+			'.otf .ttf .woff'],
+			['Word files', 
+			'.doc .docx .docm .dot .dotx .dotm .odt'],
+			['Excel files', 
+			'.xls .xlsx .xlsm .xlsb .xlt .xltx .xltm .xla .xlam .ods'],
+			['Powerpoint files', 
+			'.ppt .pptx .pptm .pot .potx .potm .pps .ppsx .ppsm .ppa .ppax .odp'],
+			['PDF files', 
+			'.pdf'],
+		]
+
 path = get_download_folder()
 
 os.chdir(path)
 
 directory = os.listdir(path)
 
-for item in directory:
-	if any(item.endswith(ext) for ext in '.rar .zip .7z'.split()):
-		try:
-			os.mkdir('zip files')
-		except FileExistsError:
-			pass
-	# elif any([item.endswith(ext) for ext in extensions]):
-	# 	vids.append(item)
+# file_names = [re.findall(r'.+\.', file)[0][::-1][1:][::-1] for file in directory]
+
+for file in directory:
+	## Chacks for duplicates
+	if re.findall(r'\(.+\)\..*', file):
+		os.remove(file)
+	for folder in folders:
+		[name, exts] = folder
+		if any(file.endswith(ext) for ext in exts.split()):
+			make(name)
+			os.replace(f"{path}\\{file}", f"{path}\\{name}\\{file}")
