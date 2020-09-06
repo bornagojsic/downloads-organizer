@@ -80,6 +80,8 @@ folders = [
 			'.ico'],
 			['Cursor files',
 			'.ani .cur'],
+			['Image files',
+			'.png .gif .jpg .jpeg .jpe .jfif .tif .tiff .bmp .dib .heic'],
 		]
 
 path = get_download_folder()
