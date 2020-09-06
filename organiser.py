@@ -82,6 +82,10 @@ folders = [
 			'.ani .cur'],
 			['Image files',
 			'.png .gif .jpg .jpeg .jpe .jfif .tif .tiff .bmp .dib .heic'],
+			['Python files',
+			'.py'],
+			['C/C++ files',
+			'.c .h .cpp .hpp .cxx .hxx .cc .hh'],
 		]
 
 path = get_download_folder()
