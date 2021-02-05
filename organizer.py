@@ -1,5 +1,6 @@
 import re
 import os
+import zipfile
 
 
 ## --------------------------------------------------------------------------------------
@@ -141,6 +142,12 @@ def main():
 		for folder in folders:
 			[name, exts] = folder
 			if any(file.endswith(ext) for ext in exts.split()):
+				if name == 'Zip files':
+					with zipfile.ZipFile(file_name, 'r') as z:
+						for zip_name in z.namelist():
+							if zip_name.endswith('.srt'):
+								replace(path, "Subtitle files", file)
+								break
 				replace(path, name, file)
 				break
 		else:
